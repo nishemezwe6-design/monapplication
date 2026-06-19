@@ -1,0 +1,36 @@
+<form id="form">
+
+<input type="text" name="name" placeholder="Nom du produit" required>
+
+<input type="number" name="price" placeholder="Prix" required>
+
+<textarea name="description" placeholder="Description"></textarea>
+
+<input type="file" name="image" required>
+
+<button type="submit">Publier</button>
+
+</form>
+
+<script>
+
+document.getElementById("form").onsubmit = async (e) => {
+
+    e.preventDefault();
+
+    let formData = new FormData(e.target);
+
+    const response = await fetch(
+        "https://fastapi-backend-l8gn.onrender.com/products",
+        {
+            method: "POST",
+            body: formData
+        }
+    );
+
+    const data = await response.json();
+
+    alert(data.message);
+};
+
+</script>

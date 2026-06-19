@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>Ma Boutique</h1>
+
+<div id="products"></div>
+
+<script>
+
+fetch("/products")
+.then(res => res.json())
+.then(data => {
+
+let html = "";
+
+data.forEach(product => {
+
+html += `
+<div class="card">
+
+<img src="/${product.image_url}">
+
+<h2>${product.name}</h2>
+
+<p>${product.description}</p>
+
+<h3>${product.price} FBu</h3>
+
+</div>
+`;
+
+});
+
+document.getElementById("products").innerHTML = html;
+
+});
+
+</script>
+
+</body>
+</html>
